@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div>
+        <span id="wordH">_______</span>
+        <span id="wordB">______</span> 
+        <span id="wordG">______</span> 
+        <span id="choiceB">______</span> 
+        <span  ></span>
+    </div>
+
+    <select id="choice" onchange="wordSelect()">
+        <option selected>-</option>
+        <option value="Hello">Hello</option>
+        <option value="Kek">Kek</option>
+    </select>
+
+    </br>
+    <button onclick="wordA(this)">know</button>
+    <button onclick="wordA(this)">think</button>
+    <button onclick="wordA(this)">cat</button>
+
+    <br>
+
+    koko: <input value="koko" type="checkbox" id="check1" onclick="myFunction()"/>
+    Tinitus: <input value="Tinitus" type="checkbox" id="check2" onclick="myFunction()"/>          
+    A hamster: <input value="A hamster" type="checkbox" id="check3" onclick="myFunction()"/>
+
+    <input id="wordSlider" type="range" min="0" max="3" step="1" value="0" oninput="calculate()" />
+
+    <datalist id="wordSlider">
+        <option value="0"></option>
+        <option value="1">Word</option>
+    </datalist>
+    
+</body>
+
+<script> 
+    var check1 = document.getElementById('check1');
+    var check2 = document.getElementById('check2');
+    var check3 = document.getElementById('check3');
+
+
+    function wordA(word) {
+        document.getElementById('wordB').innerHTML = word.innerHTML;
+        //document.getElementById('wordH').innerHTML = word.innerHTML;
+        //document.getElementById('wordG').innerHTML = word.innerHTML;
+    }
+
+    function wordSelect () {
+         document.getElementById('choiceB').innerHTML = choice.value;
+    }
+
+
+    function myFunction(){
+
+        if  (check1.checked == true){
+            check2.checked = false;
+            check3.checked = false;
+            document.getElementById('wordH').innerHTML = check1.value;
+         if (check2.checked == true)
+            check1.checked = false;
+            check3.checked = false;
+            document.getElementById('wordH').innerHTML = check2.value;
+         if (check3.checked == true)
+            check2.checked = false;
+            check1.checked = false;
+            document.getElementById('wordH').innerHTML = check3.value;
+        } else {
+            document.getElementById('wordH').innerHTML = "_______";
+        }
+        
+    }
+
+    function calculate() {
+        document.getElementById('wordG') = wordSlider.value.innerHTML
+    }
+
+    </script>
+
+
+</body>
+</html>
