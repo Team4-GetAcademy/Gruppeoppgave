@@ -21,21 +21,21 @@
 
     <select id="choice" onchange="wordSelect()">        <!--rullgardin-->
         <option value="_____" selected>-</option>
-        <option value="Troll">Troll</option>
-        <option value="Bukker">Bukker</option>
-        <option value="Geiter">Geiter</option>
+        <option value="troll">Troll</option>
+        <option value="bukker">Bukker</option>
+        <option value="geiter">Geiter</option>
     </select>
 
     </br>
-    <button onclick="wordA(this)">Rema1000</button>        <!--knapp-->
+    <button onclick="wordA(this)">rema1000</button>        <!--knapp-->
     <button onclick="wordA(this)">banken</button>
-    <button onclick="wordA(this)">Seters</button>
+    <button onclick="wordA(this)">seters</button>
 
     <br>
                                                                                     
-    Hamstre: <input value="Hamstre" type="checkbox" id="check1" onclick="myFunction()"/>        <!--checkbox-->
-    Tinitus: <input value="Tinitus" type="checkbox" id="check2" onclick="myFunction()"/>     
-    feste: <input value="feste" type="checkbox" id="check3" onclick="myFunction()"/>
+    Hamstre: <input value="hamstre" type="checkbox" id="check1" onclick="myFunction()"/>        <!--checkbox-->
+    Spise: <input value="spise" type="checkbox" id="check2" onclick="myFunction()"/>     
+    Feste: <input value="feste" type="checkbox" id="check3" onclick="myFunction()"/>
     <br/>
     <input id="wordSlider" type="range" min="0" max="3" step="1" value="0" oninput="calculate()" />
     
@@ -82,7 +82,7 @@
         var toNumber = parseInt(getnr.value);           //slider
 
         if (toNumber == 1) {
-            document.getElementById('wordG').innerHTML = "bird";
+            document.getElementById('wordG').innerHTML = "operasanger";
         } else if (toNumber == 2) {
             document.getElementById('wordG').innerHTML = "hoarder";
         } else if (toNumber == 3) {
