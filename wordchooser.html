@@ -3,41 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Word Chooser</title>
     
 </head>
 <body>
     <div>
-        <span id="wordH">_______</span>
-        <span id="wordB">______</span> 
-        <span id="wordG">______</span> 
-        <span id="choiceB">______</span> 
-        <span  ></span>
+        Det var en gang 3
+        <span id="wordZ">_____</span>  <!-- Story-->
+        som skulle til 
+        <span id="wordB">_____</span> 
+        for å
+        <span id="wordH">_____</span>  
+        . Når de kom frem fant de ut at en av dem var en
+        <span id="wordG">_____</span>  
     </div>
+    <br>
 
-    <select id="choice" onchange="wordSelect()">
-        <option selected>-</option>
-        <option value="Hello">Hello</option>
-        <option value="Kek">Kek</option>
+    <select id="choice" onchange="wordSelect()">        <!--rullgardin-->
+        <option value="_____" selected>-</option>
+        <option value="Troll">Troll</option>
+        <option value="Bukker">Bukker</option>
+        <option value="Geiter">Geiter</option>
     </select>
 
     </br>
-    <button onclick="wordA(this)">know</button>
-    <button onclick="wordA(this)">think</button>
-    <button onclick="wordA(this)">cat</button>
+    <button onclick="wordA(this)">Rema1000</button>        <!--knapp-->
+    <button onclick="wordA(this)">banken</button>
+    <button onclick="wordA(this)">Seters</button>
 
     <br>
-
-    koko: <input value="koko" type="checkbox" id="check1" onclick="myFunction()"/>
-    Tinitus: <input value="Tinitus" type="checkbox" id="check2" onclick="myFunction()"/>          
-    A hamster: <input value="A hamster" type="checkbox" id="check3" onclick="myFunction()"/>
-
+                                                                                    
+    Hamstre: <input value="Hamstre" type="checkbox" id="check1" onclick="myFunction()"/>        <!--checkbox-->
+    Tinitus: <input value="Tinitus" type="checkbox" id="check2" onclick="myFunction()"/>     
+    feste: <input value="feste" type="checkbox" id="check3" onclick="myFunction()"/>
+    <br/>
     <input id="wordSlider" type="range" min="0" max="3" step="1" value="0" oninput="calculate()" />
-
-    <datalist id="wordSlider">
-        <option value="0"></option>
-        <option value="1">Word</option>
-    </datalist>
     
 </body>
 
@@ -46,40 +46,50 @@
     var check2 = document.getElementById('check2');
     var check3 = document.getElementById('check3');
 
+    var getnr = document.getElementById('wordSlider');
+
 
     function wordA(word) {
-        document.getElementById('wordB').innerHTML = word.innerHTML;
-        //document.getElementById('wordH').innerHTML = word.innerHTML;
-        //document.getElementById('wordG').innerHTML = word.innerHTML;
+        document.getElementById('wordB').innerHTML = word.innerHTML;    //knapp
     }
 
     function wordSelect () {
-         document.getElementById('choiceB').innerHTML = choice.value;
+         document.getElementById('wordZ').innerHTML = choice.value;    //rullgardin
     }
 
 
     function myFunction(){
 
-        if  (check1.checked == true){
+        if  (check1.checked == true){   //Checkbox
             check2.checked = false;
             check3.checked = false;
             document.getElementById('wordH').innerHTML = check1.value;
-         if (check2.checked == true)
+        }else if (check2.checked == true){
             check1.checked = false;
             check3.checked = false;
             document.getElementById('wordH').innerHTML = check2.value;
-         if (check3.checked == true)
+        }else if (check3.checked == true){
             check2.checked = false;
             check1.checked = false;
             document.getElementById('wordH').innerHTML = check3.value;
         } else {
-            document.getElementById('wordH').innerHTML = "_______";
+            document.getElementById('wordH').innerHTML = "_____";
         }
         
     }
 
     function calculate() {
-        document.getElementById('wordG') = wordSlider.value.innerHTML
+        var toNumber = parseInt(getnr.value);           //slider
+
+        if (toNumber == 1) {
+            document.getElementById('wordG').innerHTML = "bird";
+        } else if (toNumber == 2) {
+            document.getElementById('wordG').innerHTML = "hoarder";
+        } else if (toNumber == 3) {
+            document.getElementById('wordG').innerHTML = "katt";
+        } else {
+            document.getElementById('wordG').innerHTML = "_____";
+    }
     }
 
     </script>
