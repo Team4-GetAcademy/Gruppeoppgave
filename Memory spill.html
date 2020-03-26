@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Husk!</title>
+</head>
+<body>
+    <div id="hundA" onclick="card(this)">Hund</div>
+    <div id="hundB" onclick="card(this)">Hund</div> </br>
+
+
+    <button onclick="card(this)">Velg</button>
+    <button onclick="card(this)">Velg</button>
+
+    <button onclick="card(this)">Velg</button>
+    <button onclick="card(this)">Velg</button>
+
+    <button onclick="card(this)">Velg</button>
+    <button onclick="card(this)">Velg</button>
+
+    <button onclick="card(this)">Velg</button>
+    <button onclick="card(this)">Velg</button> </br>
+
+    <br>
+
+    <button id="buttonA" class="kort" value="1" onclick="card(this)">KnappA</button>
+    <button id="buttonB" class="kort" value="2" onclick="card(this)">KnappB</button>
+
+    <button id="buttonC" class="kort" value="3" onclick="card(this)">KnappC</button>
+    <button id="buttonD" class="kort" value="4" onclick="card(this)">KnappD</button>
+
+    <div id="">Katt</div>
+    <div id="">Katt</div>
+
+    <div id=""></div>
+    <div id=""></div>
+
+    <div id=""></div>
+    <div id=""></div>
+
+    <div id=""></div>
+    <div id=""></div>
+
+    <h1 id="likt"></h1>
+    <h1 id="likt2"></h1>
+
+    <script>
+        var pictureList = ['hund', 'hund', 'katt', 'katt', 'hest', 'hest', 'esel', 'esel'];
+        pictureList.sort(function (a, b) { return 0.5 - Math.random()});
+        var choiceA = 'z';
+        var choiceB;
+        var kortA = document.getElementById('buttonA');
+        var kortB = document.getElementById('buttonB');
+        var trykket;
+        var teller = 0;
+
+        var option1 = '';
+        var option2 = '';
+
+        function card(pick) {
+            if(option1 == ""){
+                pick.innerHTML = pictureList[0];
+                option1 = pick.innerHTML;
+            } else if(option2 == ""){
+                pick.innerHTML = pictureList[1];
+                option2 = pick.innerHTML;
+                if(option1 == option2){
+                    document.getElementById('likt2').innerHTML = 'Det er sant';
+                }
+            }
+
+
+            if (pick.value == '1' && choiceA.value == '2') {
+                document.getElementById('likt').innerHTML = '2 LIKE!';
+                document.getElementById("buttonA").className = "riktig";
+                document.getElementById("buttonB").className = "riktig";
+            } else if (pick.value == '2' && choiceA.value == '1') {
+                document.getElementById('likt').innerHTML = '2 LIKE!';
+                document.getElementById("buttonA").className = "riktig";
+                document.getElementById("buttonB").className = "riktig";
+            }
+            console.log(pick)
+            console.log(choiceA)
+
+            if (pick.value == '3' && choiceA.value == '4') {
+                document.getElementById('likt').innerHTML = '2 LIKE!';
+               } else if (pick.value == '4' && choiceA.value == '3') {
+                document.getElementById('likt').innerHTML = '2 LIKE!';
+            }
+            console.log(pick)
+            console.log(choiceA)
+
+
+            choiceA = pick;
+            trykket = pick;
+            cardA();
+            counter();
+
+            console.log(choiceA)
+
+            // if (choiceA == pick && (choiceA.id == 'hundA' || pick.id == 'hundB')) {
+            //     kortA.innerHTML = 'Hello!';
+            //     kortB.innerHTML = 'Hello!';
+            //     kortA.removeAttribute("onclick");
+            //     kortB.removeAttribute("onclick");
+            //}
+        }
+
+
+
+
+        function cardA() {
+            trykket.disabled=true;
+        }
+
+        function counter() {
+            teller++;
+
+            if (teller >= 2) {
+            teller = 0;
+            document.getElementById('likt').innerHTML = 'RESET';
+            document.getElementsByClassName('kort')[0].disabled = false;
+            document.getElementsByClassName('kort')[1].disabled = false;
+            document.getElementsByClassName('kort')[2].disabled = false;
+            document.getElementsByClassName('kort')[3].disabled = false;
+            // document.getElementById('buttonA').disabled = false;
+            // document.getElementById('buttonB').disabled = false;
+            // document.getElementById('buttonC').disabled = false;
+            // document.getElementById('buttonD').disabled = false;
+            }
+
+
+        }
+
+    </script>
+
+
+
+</body>
+</html>
