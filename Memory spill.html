@@ -4,46 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Husk!</title>
+
+    <style>
+
+        button {
+            height: 166px;
+            width: 117;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            margin: 0 auto;
+            text-overflow: ellipsis;
+            display: inline-block;
+            margin: 0;
+            padding: 100%;
+        }
+
+    </style>
+
 </head>
 <body>
-    <div id="hundA" onclick="card(this)">Hund</div>
-    <div id="hundB" onclick="card(this)">Hund</div> </br>
+    <!-- <div id="hundA" onclick="card(this)">Hund</div>
+    <div id="hundB" onclick="card(this)">Hund</div> </br> -->
 
 
-    <button onclick="card(this)">Velg</button>
-    <button onclick="card(this)">Velg</button>
+    <button value="0" onclick="card(this)">Velg</button>
+    <button value="1" onclick="card(this)">Velg</button>
 
-    <button onclick="card(this)">Velg</button>
-    <button onclick="card(this)">Velg</button>
+    <button value="2" onclick="card(this)">Velg</button>
+    <button value="3" onclick="card(this)">Velg</button>
 
-    <button onclick="card(this)">Velg</button>
-    <button onclick="card(this)">Velg</button>
+    <button value="4" onclick="card(this)">Velg</button>
+    <button value="5" onclick="card(this)">Velg</button>
 
-    <button onclick="card(this)">Velg</button>
-    <button onclick="card(this)">Velg</button> </br>
+    <button value="6" onclick="card(this)">Velg</button>
+    <button value="7" onclick="card(this)">Velg</button> </br>
 
     <br>
 
-    <button id="buttonA" class="kort" value="1" onclick="card(this)">KnappA</button>
-    <button id="buttonB" class="kort" value="2" onclick="card(this)">KnappB</button>
+    <button id="buttonA" class="kort" value="0" onclick="card(this)">KnappA</button>
+    <button id="buttonB" class="kort" value="1" onclick="card(this)">KnappB</button>
 
-    <button id="buttonC" class="kort" value="3" onclick="card(this)">KnappC</button>
-    <button id="buttonD" class="kort" value="4" onclick="card(this)">KnappD</button>
+    <button id="buttonC" class="kort" value="2" onclick="card(this)">KnappC</button>
+    <button id="buttonD" class="kort" value="3" onclick="card(this)">KnappD</button>
 
-    <div id="">Katt</div>
-    <div id="">Katt</div>
+    <button id="buttonE" class="kort" value="4" onclick="card(this)">KnappE</button>
+    <button id="buttonF" class="kort" value="5" onclick="card(this)">KnappF</button>
 
-    <div id=""></div>
-    <div id=""></div>
-
-    <div id=""></div>
-    <div id=""></div>
-
-    <div id=""></div>
-    <div id=""></div>
-
-    <h1 id="likt"></h1>
-    <h1 id="likt2"></h1>
+    <button id="buttonG" class="kort" value="6" onclick="card(this)">KnappG</button>
+    <button id="buttonH" class="kort" value="7" onclick="card(this)">KnappH</button>
 
     <script>
         var pictureList = ['hund', 'hund', 'katt', 'katt', 'hest', 'hest', 'esel', 'esel'];
@@ -59,14 +68,19 @@
         var option2 = '';
 
         function card(pick) {
+            var valgt = pick.value;
+            var valgtPos = parseInt(valgt);
+
             if(option1 == ""){
-                pick.innerHTML = pictureList[0];
+                pick.innerHTML = pictureList[valgtPos];
                 option1 = pick.innerHTML;
             } else if(option2 == ""){
-                pick.innerHTML = pictureList[1];
+                pick.innerHTML = pictureList[valgtPos];
                 option2 = pick.innerHTML;
                 if(option1 == option2){
-                    document.getElementById('likt2').innerHTML = 'Det er sant';
+                    document.getElementById('likt2').innerHTML += 'Det er sant: ' + pictureList[valgtPos] + '!' + '</br>';
+                    option1 = '';
+                    option2 = '';
                 }
             }
 
@@ -85,8 +99,12 @@
 
             if (pick.value == '3' && choiceA.value == '4') {
                 document.getElementById('likt').innerHTML = '2 LIKE!';
+                document.getElementById("buttonC").className = "riktig";
+                document.getElementById("buttonD").className = "riktig";
                } else if (pick.value == '4' && choiceA.value == '3') {
                 document.getElementById('likt').innerHTML = '2 LIKE!';
+                document.getElementById("buttonC").className = "riktig";
+                document.getElementById("buttonD").className = "riktig";
             }
             console.log(pick)
             console.log(choiceA)
@@ -119,11 +137,15 @@
 
             if (teller >= 2) {
             teller = 0;
-            document.getElementById('likt').innerHTML = 'RESET';
+            //document.getElementById('likt').innerHTML = 'RESET';
             document.getElementsByClassName('kort')[0].disabled = false;
             document.getElementsByClassName('kort')[1].disabled = false;
             document.getElementsByClassName('kort')[2].disabled = false;
             document.getElementsByClassName('kort')[3].disabled = false;
+            document.getElementsByClassName('kort')[4].disabled = false;
+            document.getElementsByClassName('kort')[5].disabled = false;
+            document.getElementsByClassName('kort')[6].disabled = false;
+            document.getElementsByClassName('kort')[7].disabled = false;
             // document.getElementById('buttonA').disabled = false;
             // document.getElementById('buttonB').disabled = false;
             // document.getElementById('buttonC').disabled = false;
