@@ -14,7 +14,6 @@
             text-align: center;
             background-image: url(https://steemitimages.com/640x0/https://cdn.steemitimages.com/DQmV3BHsmMGaipKZ9H4gN9m15sAgrvh4BzkKjkHRZrTQmQq/back.jpg);
             background-size: contain;
-            user-select: none;
             margin: 4px 2px;
             padding: 0px;
             border-width: 3px;
@@ -27,20 +26,17 @@
             border-width: 3px;
         }
 
-        .kort {
+        div {
             user-select: none;
-        }
-
-        .blank {
-            user-select: none;
+            display: inline-block;
         }
 
     </style>
 
 </head>
-<body>
+<body style="background-color:darkgoldenrod;">
 
-    <button id="knapp1" value="0" class="kort" onclick="card(this)"></button>
+    <!-- <button id="knapp1" value="0" class="kort" onclick="card(this)"></button>
     <button id="knapp2" value="1" class="kort" onclick="card(this)"></button>
 
     <button id="knapp3" value="2" class="kort" onclick="card(this)"></button>
@@ -52,13 +48,25 @@
     <button id="knapp7" value="6" class="kort" onclick="card(this)"></button>
     <button id="knapp8" value="7" class="kort" onclick="card(this)"></button> </br>
 
-    <br>
+    <br> -->
 
-    <div id="likt2"></div>
+    <div id="content"></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script>
+        buttonPlacer();
+
+        function buttonPlacer() {
+            document.getElementById('content').innerHTML =
+            buttonMaker(1, 0) + buttonMaker(2, 1) + buttonMaker(3, 2) + buttonMaker(4, 3) + `</br>` +
+            buttonMaker(5, 4) + buttonMaker(6, 5) + buttonMaker(7, 6) + buttonMaker(8, 7);
+        }
+
+        function buttonMaker(nr, val) {
+            return `<button id="knapp${nr}" value="${val}" class="kort" onclick="card(this)"></button>`;
+        }
+
         var pictureList = ['hund', 'hund', 'katt', 'katt', 'hest', 'hest', 'esel', 'esel'];
         pictureList.sort(function (a, b) { return 0.5 - Math.random()});
     
