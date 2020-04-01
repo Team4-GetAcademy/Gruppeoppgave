@@ -12,152 +12,117 @@
             width: 117px;
             cursor: pointer;
             text-align: center;
-            /* display: inline-block;
-            margin: 0 auto;
-            text-overflow: ellipsis;
-            display: inline-block;
-            margin: 0;
-            padding: 100%; */
+            background-image: url(https://steemitimages.com/640x0/https://cdn.steemitimages.com/DQmV3BHsmMGaipKZ9H4gN9m15sAgrvh4BzkKjkHRZrTQmQq/back.jpg);
+            background-size: contain;
+            user-select: none;
+            margin: 4px 2px;
+            padding: 0px;
+        }
+
+        .blank {
+            border-style: solid;
+            border-color: royalblue;
+            border-width: 3px;
+            user-select: none;
+        }
+
+        .kort {
+            user-select: none;
+        }
+
+        .blank {
+            user-select: none;
         }
 
     </style>
 
 </head>
 <body>
-    <!-- <div id="hundA" onclick="card(this)">Hund</div>
-    <div id="hundB" onclick="card(this)">Hund</div> </br> -->
 
+    <button id="knapp1" value="0" class="kort" onclick="card(this)"></button>
+    <button id="knapp2" value="1" class="kort" onclick="card(this)"></button>
 
-    <button value="0" onclick="card(this)">Velg</button>
-    <button value="1" onclick="card(this)">Velg</button>
+    <button id="knapp3" value="2" class="kort" onclick="card(this)"></button>
+    <button id="knapp4" value="3" class="kort" onclick="card(this)"></button>
+<br>
+    <button id="knapp5" value="4" class="kort" onclick="card(this)"></button>
+    <button id="knapp6" value="5" class="kort" onclick="card(this)"></button>
 
-    <button value="2" onclick="card(this)">Velg</button>
-    <button value="3" onclick="card(this)">Velg</button>
-
-    <button value="4" onclick="card(this)">Velg</button>
-    <button value="5" onclick="card(this)">Velg</button>
-
-    <button value="6" onclick="card(this)">Velg</button>
-    <button value="7" onclick="card(this)">Velg</button> </br>
+    <button id="knapp7" value="6" class="kort" onclick="card(this)"></button>
+    <button id="knapp8" value="7" class="kort" onclick="card(this)"></button> </br>
 
     <br>
 
-    <button id="buttonA" class="kort" value="0" onclick="card(this)">KnappA</button>
-    <button id="buttonB" class="kort" value="1" onclick="card(this)">KnappB</button>
+    <div id="likt2"></div>
 
-    <button id="buttonC" class="kort" value="2" onclick="card(this)">KnappC</button>
-    <button id="buttonD" class="kort" value="3" onclick="card(this)">KnappD</button>
-
-    <button id="buttonE" class="kort" value="4" onclick="card(this)">KnappE</button>
-    <button id="buttonF" class="kort" value="5" onclick="card(this)">KnappF</button>
-
-    <button id="buttonG" class="kort" value="6" onclick="card(this)">KnappG</button>
-    <button id="buttonH" class="kort" value="7" onclick="card(this)">KnappH</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script>
         var pictureList = ['hund', 'hund', 'katt', 'katt', 'hest', 'hest', 'esel', 'esel'];
         pictureList.sort(function (a, b) { return 0.5 - Math.random()});
-        var choiceA = 'z';
-        var choiceB;
-        var kortA = document.getElementById('buttonA');
-        var kortB = document.getElementById('buttonB');
-        var trykket;
-        var teller = 0;
-
+    
         var option1 = '';
         var option2 = '';
+        var idA = '';
+        var idB = '';
+        var hundBilde ='<img src="https://schum-tug.com/wp-content/uploads/2018/01/chien-niaiseux-300x300.jpg" style="object-fit:contain; height:100%; width:100%" />';
+        var kattBilde ='<img src="https://i1.sndcdn.com/avatars-000290374574-sl8jkd-t500x500.jpg" style="object-fit:contain; height:100%; width:100%" />';
+        var hestBilde ='<img src="https://dbstatic.no/71226324.jpg" style="object-fit:contain; height:100%; width:100%" />';
+        var eselBilde ='<img src="https://i.pinimg.com/236x/03/2d/d3/032dd382dffe7ecf0045c9a00f12679a--visual-puns-hee-haw.jpg" style="object-fit:contain; height:100%; width:100%" />';
 
         function card(pick) {
             var valgt = pick.value;
             var valgtPos = parseInt(valgt);
+            pick.disabled = true;
 
             if(option1 == ""){
-                pick.innerHTML = pictureList[valgtPos];
-                option1 = pick.innerHTML;
+                if (pictureList[valgtPos] == 'hund') {
+                    pick.innerHTML = hundBilde;
+                } else if (pictureList[valgtPos] == 'katt') {
+                    pick.innerHTML = kattBilde;
+                } else if (pictureList[valgtPos] == 'hest') {
+                    pick.innerHTML = hestBilde;
+                } else if (pictureList[valgtPos] == 'esel') {
+                    pick.innerHTML = eselBilde;
+                }
+
+                option1 = pictureList[valgtPos];
+                idA = pick.id;
             } else if(option2 == ""){
-                pick.innerHTML = pictureList[valgtPos];
-                option2 = pick.innerHTML;
+                if (pictureList[valgtPos] == 'hund') {
+                    pick.innerHTML = hundBilde;
+                } else if (pictureList[valgtPos] == 'katt') {
+                    pick.innerHTML = kattBilde;
+                } else if (pictureList[valgtPos] == 'hest') {
+                    pick.innerHTML = hestBilde;
+                } else if (pictureList[valgtPos] == 'esel') {
+                    pick.innerHTML = eselBilde;
+                }
+                option2 = pictureList[valgtPos];
+                idB = pick.id;
                 if(option1 == option2){
-                    document.getElementById('likt2').innerHTML += 'Det er sant: ' + pictureList[valgtPos] + '!' + '</br>';
+                    document.getElementById(idA).className = 'blank';
+                    document.getElementById(idB).className = 'blank';
                     option1 = '';
                     option2 = '';
+                    idA = '';
+                    idB = '';      
+                } else {
+                    $(".kort").attr("disabled", true);
+                    setTimeout(function(){
+                    document.getElementById(idA).innerHTML = '';
+                    document.getElementById(idB).innerHTML = '';
+                    option1 = '';
+                    option2 = '';
+                    idA = '';
+                    idB = '';
+                    $(".kort").attr("disabled", false);
+                    }, 1500);
                 }
             }
-
-
-            if (pick.value == '1' && choiceA.value == '2') {
-                document.getElementById('likt').innerHTML = '2 LIKE!';
-                document.getElementById("buttonA").className = "riktig";
-                document.getElementById("buttonB").className = "riktig";
-            } else if (pick.value == '2' && choiceA.value == '1') {
-                document.getElementById('likt').innerHTML = '2 LIKE!';
-                document.getElementById("buttonA").className = "riktig";
-                document.getElementById("buttonB").className = "riktig";
-            }
-            console.log(pick)
-            console.log(choiceA)
-
-            if (pick.value == '3' && choiceA.value == '4') {
-                document.getElementById('likt').innerHTML = '2 LIKE!';
-                document.getElementById("buttonC").className = "riktig";
-                document.getElementById("buttonD").className = "riktig";
-               } else if (pick.value == '4' && choiceA.value == '3') {
-                document.getElementById('likt').innerHTML = '2 LIKE!';
-                document.getElementById("buttonC").className = "riktig";
-                document.getElementById("buttonD").className = "riktig";
-            }
-            console.log(pick)
-            console.log(choiceA)
-
-
-            choiceA = pick;
-            trykket = pick;
-            cardA();
-            counter();
-
-            console.log(choiceA)
-
-            // if (choiceA == pick && (choiceA.id == 'hundA' || pick.id == 'hundB')) {
-            //     kortA.innerHTML = 'Hello!';
-            //     kortB.innerHTML = 'Hello!';
-            //     kortA.removeAttribute("onclick");
-            //     kortB.removeAttribute("onclick");
-            //}
-        }
-
-
-
-
-        function cardA() {
-            trykket.disabled=true;
-        }
-
-        function counter() {
-            teller++;
-
-            if (teller >= 2) {
-            teller = 0;
-            //document.getElementById('likt').innerHTML = 'RESET';
-            document.getElementsByClassName('kort')[0].disabled = false;
-            document.getElementsByClassName('kort')[1].disabled = false;
-            document.getElementsByClassName('kort')[2].disabled = false;
-            document.getElementsByClassName('kort')[3].disabled = false;
-            document.getElementsByClassName('kort')[4].disabled = false;
-            document.getElementsByClassName('kort')[5].disabled = false;
-            document.getElementsByClassName('kort')[6].disabled = false;
-            document.getElementsByClassName('kort')[7].disabled = false;
-            // document.getElementById('buttonA').disabled = false;
-            // document.getElementById('buttonB').disabled = false;
-            // document.getElementById('buttonC').disabled = false;
-            // document.getElementById('buttonD').disabled = false;
-            }
-
-
         }
 
     </script>
-
-
 
 </body>
 </html>

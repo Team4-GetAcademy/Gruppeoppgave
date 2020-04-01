@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width:150px;
+            height:150px;
+            background-color: blueviolet;
+            
+        }
+        div.first{
+            background-color: yellow;
+        }
+        div:hover{
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="first" info="soundA" onclick="play(this)"></div>
+    <div info="soundB" onclick="play(this)"></div>
+    
+    <audio id="myAudio">
+        <source src="sounds/clay.mp3" type="audio/mpeg">
+        <source src="sounds/clay.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <script>
+        var soundA = document.getElementById('myAudio');
+    
+        function play(sound) {
+            sound.play();
+        }
+    
+    </script>
+
+
+</body>
+</html>            
+        }
+        div.first{
+            background-color: yellow;
+        }
+        div:hover{
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="first" info="soundA" onclick="play(this)"></div>
+    <div info="soundB" onclick="play(this)"></div>
+    
+    <audio id="myAudio">
+        <source src="sounds/clay.mp3" type="audio/mpeg">
+        <source src="sounds/clay.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <script>
+        var soundA = document.getElementById('soundA');
+    
+        function play(sound) {
+            sound.play();
+        }

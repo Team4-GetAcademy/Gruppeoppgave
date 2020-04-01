@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width:150px;
+            height:150px;
+            background-color: blueviolet;
+            cursor: pointer;
+        }
+        div.first{
+            background-color: yellow;
+        }
+        div:hover{
+            background-color: darkblue;
+        }
+    </style>
+<body>
+
+    <div class="first" info="soundA" onclick="playAudio()"></div>
+    <div info="soundB" onclick="playAudio2()"></div>
+
+    <audio id="myAudio">
+        <source src="sounds/bubbles.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="myAudio2">
+        <source src="sounds/moon.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <script>
+        var audioA = document.getElementById('myAudio');
+        var audioB = document.getElementById('myAudio2');
+
+        function playAudio() {
+            audioA.play();
+        }
+        function playAudio2() {
+            audioB.play();
+        }
+
+    </script>
+
+
+</body>
+</html>
