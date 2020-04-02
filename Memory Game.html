@@ -11,7 +11,6 @@
             height: 166px;
             width: 117px;
             cursor: pointer;
-            text-align: center;
             background-image: url(https://steemitimages.com/640x0/https://cdn.steemitimages.com/DQmV3BHsmMGaipKZ9H4gN9m15sAgrvh4BzkKjkHRZrTQmQq/back.jpg);
             background-size: contain;
             margin: 4px 2px;
@@ -23,7 +22,6 @@
         .blank {
             border-style: solid;
             border-color: royalblue;
-            border-width: 3px;
         }
 
         div {
@@ -59,12 +57,12 @@
 
         function buttonPlacer() {
             document.getElementById('content').innerHTML =
-            buttonMaker(1, 0) + buttonMaker(2, 1) + buttonMaker(3, 2) + buttonMaker(4, 3) + `</br>` +
-            buttonMaker(5, 4) + buttonMaker(6, 5) + buttonMaker(7, 6) + buttonMaker(8, 7);
+            buttonMaker(0) + buttonMaker(1) + buttonMaker(2) + buttonMaker(3) + `</br>` +
+            buttonMaker(4) + buttonMaker(5) + buttonMaker(6) + buttonMaker(7);
         }
 
-        function buttonMaker(nr, val) {
-            return `<button id="knapp${nr}" value="${val}" class="kort" onclick="card(this)"></button>`;
+        function buttonMaker(nr) {
+            return `<button id="knapp${nr}" value="${nr}" class="kort" onclick="card(this)"></button>`;
         }
 
         var pictureList = ['hund', 'hund', 'katt', 'katt', 'hest', 'hest', 'esel', 'esel'];
