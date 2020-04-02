@@ -129,7 +129,14 @@
                 }
             }
         }
-
+        function korektSvar(id){
+            document.getElementById(id).classList.contains('blank');
+        }
+        if (korektSvar('knapp0') && korektSvar('knapp1') && korektSvar('knapp2') && korektSvar('knapp3') &&
+        korektSvar('knapp4') && korektSvar('knapp5') && korektSvar('knapp6') && korektSvar('knapp7')){
+            alert ('Du vant!');
+        }
+        alert ('hei på deg')
     </script>
 
 </body>
