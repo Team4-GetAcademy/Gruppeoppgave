@@ -21,34 +21,62 @@
 
         .blank {
             border-style: solid;
-            border-color: royalblue;
+            border-color: rgb(238, 60, 29);
         }
 
         div {
             user-select: none;
             display: inline-block;
         }
+        
+        h1 {
+            font-size: 600%;
+            margin-left: 50px;
+            -webkit-animation: color-change 1s infinite;
+            -moz-animation: color-change 1s infinite;
+            -o-animation: color-change 1s infinite;
+            -ms-animation: color-change 1s infinite;
+            animation: color-change 1s infinite;
+        }
+
+        @-webkit-keyframes color-change {
+            0% { color: rgb(205, 0, 0); }
+            50% { color: rgb(255, 215, 0); }
+            100% { color: rgb(205, 0, 0); }
+        }
+        @-moz-keyframes color-change {
+            0% { color: rgb(205, 0, 0); }
+            50% { color: rgb(255, 215, 0); }
+            100% { color: rgb(205, 0, 0); }
+        }
+        @-ms-keyframes color-change {
+            0% { color: rgb(205, 0, 0); }
+            50% { color: rgb(255, 215, 0); }
+            100% { color: rgb(205, 0, 0); }
+        }
+        @-o-keyframes color-change {
+            0% { color: rgb(205, 0, 0); }
+            50% { color: rgb(255, 215, 0); }
+            100% { color: rgb(205, 0, 0); }
+        }
+        @keyframes color-change {
+            0% { color: rgb(205, 0, 0); }
+            50% { color: rgb(255, 215, 0); }
+            100% { color: rgb(205, 0, 0); }
+        }
+        
 
     </style>
 
 </head>
-<body style="background-color:darkgoldenrod;">
+<body style="background-color:rgb(19, 30, 58);">
 
-    <!-- <button id="knapp1" value="0" class="kort" onclick="card(this)"></button>
-    <button id="knapp2" value="1" class="kort" onclick="card(this)"></button>
+    <div id="content"></div> <br>
+    <h1 id="winner"></h1>
 
-    <button id="knapp3" value="2" class="kort" onclick="card(this)"></button>
-    <button id="knapp4" value="3" class="kort" onclick="card(this)"></button>
-<br>
-    <button id="knapp5" value="4" class="kort" onclick="card(this)"></button>
-    <button id="knapp6" value="5" class="kort" onclick="card(this)"></button>
-
-    <button id="knapp7" value="6" class="kort" onclick="card(this)"></button>
-    <button id="knapp8" value="7" class="kort" onclick="card(this)"></button> </br>
-
-    <br> -->
-
-    <div id="content"></div>
+    <audio id="winnerSound">
+        <source src="https://ia802304.us.archive.org/16/items/01NationalAnthemOfTheUSSR/01_-_National_Anthem_of_the_USSR.mp3" type="audio/mpeg">
+    </audio>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
@@ -128,16 +156,17 @@
                     }, 1500);
                 }
             }
+            if (korektSvar('knapp0') && korektSvar('knapp1') && korektSvar('knapp2') && korektSvar('knapp3') &&
+                korektSvar('knapp4') && korektSvar('knapp5') && korektSvar('knapp6') && korektSvar('knapp7')){
+                document.getElementById('winner').innerHTML = "You won!";
+                document.getElementById('winnerSound').play();
+                }
         }
+
         function korektSvar(id){
-            document.getElementById(id).classList.contains('blank');
+                return document.getElementById(id).classList.contains('blank');
         }
-        if (korektSvar('knapp0') && korektSvar('knapp1') && korektSvar('knapp2') && korektSvar('knapp3') &&
-        korektSvar('knapp4') && korektSvar('knapp5') && korektSvar('knapp6') && korektSvar('knapp7')){
-            alert ('Du vant!');
-        }
-        alert ('hei på deg')
-    </script>
+        </script>
 
 </body>
 </html>
