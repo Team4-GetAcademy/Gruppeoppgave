@@ -156,14 +156,14 @@
                     }, 1500);
                 }
             }
-            if (korektSvar('knapp0') && korektSvar('knapp1') && korektSvar('knapp2') && korektSvar('knapp3') &&
-                korektSvar('knapp4') && korektSvar('knapp5') && korektSvar('knapp6') && korektSvar('knapp7')){
+            if (korrektSvar('knapp0') && korrektSvar('knapp1') && korrektSvar('knapp2') && korrektSvar('knapp3') &&
+                korrektSvar('knapp4') && korrektSvar('knapp5') && korrektSvar('knapp6') && korrektSvar('knapp7')){
                 document.getElementById('winner').innerHTML = "You won!";
                 document.getElementById('winnerSound').play();
                 }
         }
 
-        function korektSvar(id){
+        function korrektSvar(id){
                 return document.getElementById(id).classList.contains('blank');
         }
         </script>
