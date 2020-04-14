@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        button{
+            height: 280px;
+            width: 380px; 
+        }
+        #saks{
+            background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Saksh%C3%A5nd_illustrasjon.jpg/375px-Saksh%C3%A5nd_illustrasjon.jpg);
+        }
+        #papir{
+            background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Papirh%C3%A5nd_beskrivelse.jpg/375px-Papirh%C3%A5nd_beskrivelse.jpg);
+        }
+        #stein{
+            background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Steinh%C3%A5nd_illustrasjon.jpg/375px-Steinh%C3%A5nd_illustrasjon.jpg);
+        }
+        div{
+            font-size: 350%;
+        }
+        
+    </style>
+</head>
+<body>
+    <button id="saks" onclick="pick(this)"></button>
+    <button id="stein" onclick="pick(this)"></button>
+    <button id="papir" onclick="pick(this)"></button> <br>
+
+    <div id="compShow"></div>
+    <div id="result"></div>
+    
+
+    <script>
+        let compOptions = ['stein', 'saks', 'papir'];
+
+        function pick(chosen) {
+            let mychoice = chosen.id;
+            let compRandom = Math.floor(Math.random() * 3);
+            let resultDiv = document.getElementById('result');
+            let compShowDiv = document.getElementById('compShow');
+            compShowDiv.innerHTML = `Du valgte: ${mychoice} - Computer valgte: ${compOptions[compRandom]}`;
+
+            if(mychoice == compOptions[compRandom]){
+                resultDiv.innerHTML = 'Likt!';
+            } else if (mychoice == 'stein' && compOptions[compRandom] == 'saks' || mychoice == 'saks' && compOptions[compRandom] == 'papir' ||
+                        mychoice == 'papir' && compOptions[compRandom] == 'stein') {
+                resultDiv.innerHTML = 'Du vant!';
+            } else {
+                resultDiv.innerHTML = 'Computer vant! SAD!!!!';
+            }
+        }
+
+    </script>
+</body>
+</html>
