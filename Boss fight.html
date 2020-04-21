@@ -56,7 +56,7 @@
         }
 
         function showBoss() {
-            document.body.style.backgroundImage = "data:image/jpeg";
+            document.body.style.backgroundImage = "url('picture/forest.jpg')";
             contentDiv.innerHTML = `
             <h1>${bossHealth}</h1>
             <img src="https://i.pinimg.com/originals/2f/e3/f1/2fe3f1584effc3be5855db5aefd02a98.jpg" height="400px">
@@ -89,7 +89,7 @@
             
             if (rngNr == 19){
                 bossHealth = bossHealth - youAttack * 4;
-                messageAttack = 'You hit with 40 dmg!';
+                messageAttack = '<strong>You hit with 40 dmg!</strong>';
                 critAudio.play();
             } 
             else if (rngNr == 18) {
@@ -120,7 +120,6 @@
                 messageBossAttack = 'Boss hit with 15 dmg!';
             }
             
-
             if (bossHealth <= 0 && youHealth <= 0) {
                 bossHealth = 0;
                 youHealth = 0;
