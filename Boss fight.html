@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="content"></div>
+
+    <script>
+
+        // ??
+        let contentDiv = document.getElementById('content');
+
+        // model
+        let bossHealth = 200;
+        let bossAttack = 15;
+        let youHealth = 100;
+        let youAttack = 10;
+        let messageWinner = null;
+        let messageAttack = null;
+        let messageBossAttack = null;
+        let buttonState = null;
+
+        // view
+        show();
+        function show() {
+            contentDiv.innerHTML = `
+            <h1>${bossHealth}</h1>
+            <img src="https://i.pinimg.com/originals/2f/e3/f1/2fe3f1584effc3be5855db5aefd02a98.jpg" height="200px">
+            <h1>${youHealth}</h1>
+            <button ${buttonState || ''} onclick="attack()">Kick ASS</button>
+            <div>${messageAttack || ''}</div>
+            <div>${messageBossAttack || ''}</div>
+            <div>${messageWinner || ''}</div>
+            `;
+
+            
+        }
+
+        // controller
+        function attack() {
+            let rngNr = Math.floor(Math.random() * 20);
+            let rngBoss = Math.floor(Math.random() * 20);
+
+            if (rngNr == 19){
+                bossHealth = bossHealth - youAttack * 4;
+                messageAttack = 'You hit with 40 dmg!';
+            } 
+            else if (rngNr == 18) {
+                bossHealth = bossHealth - youAttack * 2;
+                messageAttack = 'You hit with 20 dmg!';
+            } 
+            else if(rngNr == 17){
+                bossHealth = bossHealth;
+                messageAttack = 'You miss!'
+            } else {
+                bossHealth = bossHealth - youAttack;
+                messageAttack = 'You hit with 10 dmg!';
+            }
+            
+            if (rngBoss == 19 && bossHealth > 0){
+                youHealth = youHealth - bossAttack * 10;
+                messageBossAttack = 'Boss hit with 150 dmg!';
+            } 
+            else if (rngBoss == 18 && bossHealth > 0) {
+                youHealth = youHealth - bossAttack / 5;
+                messageBossAttack = 'Boss hit with 3 dmg!';
+            } 
+            else if (rngBoss == 17 && bossHealth > 0){
+                youHealth = youHealth;
+                messageBossAttack = 'Boss miss!'
+            } else {
+                youHealth = youHealth - bossAttack
+                messageBossAttack = 'Boss hit with 15 dmg!';
+            }
+            
+            youHealth = youHealth - bossAttack;
+          
+
+            if (bossHealth < 0) {
+                bossHealth = 0;
+                messageWinner = 'You won!';
+                buttonState = 'disabled';
+            }
+            else if (youHealth < 0) {
+                youHealth = 0;
+                messageWinner = 'Boss won!';
+                buttonState = 'disabled';
+            }
+
+            show();
+        }
+
+
+    </script>
+    
+</body>
+</html>
