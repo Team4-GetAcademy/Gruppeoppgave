@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!-- <style>
+    <style>
         body {
-          background-image: url('Picture/swordBack.png');
           background-repeat: no-repeat;
           background-attachment: fixed;
           background-size: cover;
         }
-    </style> -->
+    </style>
 
 </head>
 <body>
@@ -57,6 +56,7 @@
         }
 
         function showBoss() {
+            document.body.style.backgroundImage = "data:image/jpeg";
             contentDiv.innerHTML = `
             <h1>${bossHealth}</h1>
             <img src="https://i.pinimg.com/originals/2f/e3/f1/2fe3f1584effc3be5855db5aefd02a98.jpg" height="400px">
@@ -69,6 +69,7 @@
         }
 
         function showBoss2() {
+            document.body.style.backgroundImage = "";
             contentDiv.innerHTML = `
             <h1>${bossHealth}</h1>
             <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/midn-flayer-stranger-things-1562960985.png" height="400px">
