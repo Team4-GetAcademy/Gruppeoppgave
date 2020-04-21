@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        body {
+          background-image: url('img_girl.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+        }
+    </style>
+
 </head>
 <body>
     <div id="content"></div>
@@ -21,16 +31,30 @@
         // model
         let bossHealth = 200;
         let bossAttack = 15;
-        let youHealth = 1000;
+        let youHealth = 100;
         let youAttack = 10;
         let messageWinner = null;
         let messageAttack = null;
         let messageBossAttack = null;
         let buttonState = null;
+        let screen = 'swordPick';
 
         // view
         show();
         function show() {
+            if (screen = 'swordPick') showSword();
+            if (screen = 'boss') showBoss();
+        }
+
+        function showSword() {
+            contentDiv.innerHTML = `
+            <img onclick="" src="https://cdn.shopify.com/s/files/1/2384/2133/products/lg_54681.jpg?v=1516327260" height="300px">
+            <img onclick="" src="">
+            <img onclick="" src="https://whowhatwhy.org/wp-content/uploads/2016/06/b-2.jpg" height="300px">
+            `;
+        }
+
+        function showBoss() {
             contentDiv.innerHTML = `
             <h1>${bossHealth}</h1>
             <img src="https://i.pinimg.com/originals/2f/e3/f1/2fe3f1584effc3be5855db5aefd02a98.jpg" height="200px">
@@ -40,8 +64,6 @@
             <div>${messageBossAttack || ''}</div>
             <div>${messageWinner || ''}</div>
             `;
-
-            
         }
 
         // controller
@@ -83,7 +105,14 @@
                 messageBossAttack = 'Boss hit with 15 dmg!';
             }
             
-            if (bossHealth < 0) {
+
+            if (bossHealth < 0 && youHealth < 0) {
+                bossHealth = 0;
+                youHealth = 0;
+                messageWinner = 'Both died!'
+                buttonState = 'disabled';
+            }
+            else if (bossHealth < 0) {
                 bossHealth = 0;
                 messageWinner = 'You won!';
                 buttonState = 'disabled';
