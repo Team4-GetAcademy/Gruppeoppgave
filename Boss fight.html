@@ -15,6 +15,11 @@
         h1 {
             color: pink;
         }
+
+        h2 {
+            font-size: 1000%;
+        }
+        
     </style>
 
 </head>
@@ -40,7 +45,7 @@
         let messageAttack = null;
         let messageBossAttack = null;
         let buttonState = null;
-        let screen = 'swordPick';
+        let screen = 'winner';
 
         // view
         show();
@@ -87,7 +92,8 @@
         }
 
         function winner() {
-            contentDiv.innerHTML = `You won!`;
+            document.body.style.backgroundImage = '';
+            contentDiv.innerHTML = `<h2>You won!</h2>`;
         }
 
         // controller
@@ -140,7 +146,7 @@
             }
             else if (bossHealth <= 0) {
                 screen = 'boss2';
-                bossHealth = 1000;
+                bossHealth = 50;
             }
             else if (youHealth <= 0) {
                 youHealth = 0;
