@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <style>
+    <!-- <style>
         body {
           background-image: url('Picture/swordBack.png');
           background-repeat: no-repeat;
           background-attachment: fixed;
           background-size: cover;
         }
-    </style>
+    </style> -->
 
 </head>
 <body>
@@ -32,7 +32,7 @@
         let bossHealth = 200;
         let bossAttack = 15;
         let youHealth = 100;
-        let youAttack = 10;
+        let youAttack;
         let messageWinner = null;
         let messageAttack = null;
         let messageBossAttack = null;
@@ -44,20 +44,34 @@
         function show() {
             if (screen == 'swordPick') showSword();
             if (screen == 'boss') showBoss();
+            if (screen == 'boss2') showBoss2();
         }
 
         function showSword() {
+            document.body.style.backgroundImage = "url('Picture/swordBack.png')";
             contentDiv.innerHTML = `
-            <img onclick="" src="https://cdn.shopify.com/s/files/1/2384/2133/products/lg_54681.jpg?v=1516327260" height="300px">
-            <img onclick="" src="https://upload.wikimedia.org/wikipedia/commons/1/14/Lightsaber%2C_silver_hilt%2C_blue_blade.png" height="300px">
-            <img onclick="" src="https://whowhatwhy.org/wp-content/uploads/2016/06/b-2.jpg" height="300px">
+            <img onclick="youAttack = 5;screen = 'boss';show()" src="https://cdn.shopify.com/s/files/1/2384/2133/products/lg_54681.jpg?v=1516327260" height="300px">
+            <img onclick="youAttack = 10;screen = 'boss';show()" src="https://upload.wikimedia.org/wikipedia/commons/1/14/Lightsaber%2C_silver_hilt%2C_blue_blade.png" height="300px">
+            <img onclick="youAttack = 50;screen = 'boss';show()" src="https://whowhatwhy.org/wp-content/uploads/2016/06/b-2.jpg" height="300px">
             `;
         }
 
         function showBoss() {
             contentDiv.innerHTML = `
             <h1>${bossHealth}</h1>
-            <img src="https://i.pinimg.com/originals/2f/e3/f1/2fe3f1584effc3be5855db5aefd02a98.jpg" height="200px">
+            <img src="https://i.pinimg.com/originals/2f/e3/f1/2fe3f1584effc3be5855db5aefd02a98.jpg" height="400px">
+            <h1>${youHealth}</h1>
+            <button ${buttonState || ''} onclick="attack()">Kick ASS</button>
+            <div>${messageAttack || ''}</div>
+            <div>${messageBossAttack || ''}</div>
+            <div>${messageWinner || ''}</div>
+            `;
+        }
+
+        function showBoss2() {
+            contentDiv.innerHTML = `
+            <h1>${bossHealth}</h1>
+            <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/midn-flayer-stranger-things-1562960985.png" height="400px">
             <h1>${youHealth}</h1>
             <button ${buttonState || ''} onclick="attack()">Kick ASS</button>
             <div>${messageAttack || ''}</div>
@@ -106,32 +120,31 @@
             }
             
 
-            if (bossHealth < 0 && youHealth < 0) {
+            if (bossHealth <= 0 && youHealth <= 0) {
                 bossHealth = 0;
                 youHealth = 0;
                 messageWinner = 'Both died!'
                 buttonState = 'disabled';
             }
-            else if (bossHealth < 0) {
+            else if (bossHealth <= 0) {
                 bossHealth = 0;
                 messageWinner = 'You won!';
-                buttonState = 'disabled';
+                // buttonState = 'disabled';
+                screen = 'boss2';
+                bossHealth = 1000;
             }
-            else if (youHealth < 0) {
+            else if (youHealth <= 0) {
                 youHealth = 0;
                 messageWinner = 'Boss won!';
                 buttonState = 'disabled';
             }
-            
 
             if (rngUltra == 1) {
                 bossHealth  = bossHealth - youAttack * 900;
                 messageAttack = 'Its over 9000!!!';
             }
-
             show();
         }
-
 
     </script>
     
