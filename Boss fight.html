@@ -135,11 +135,10 @@
                 messageWinner = 'Both died!'
                 buttonState = 'disabled';
             }
+            else if (bossHealth <= 0 && screen == 'boss2') {
+                screen = 'winner';
+            }
             else if (bossHealth <= 0) {
-                // bossHealth = 0;
-                // messageWinner = 'You won!';
-                // buttonState = 'disabled';
-                if (screen == 'boss2') return screen = 'winner';
                 screen = 'boss2';
                 bossHealth = 1000;
             }
