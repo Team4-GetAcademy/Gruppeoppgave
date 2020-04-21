@@ -8,15 +8,20 @@
 <body>
     <div id="content"></div>
 
+    <audio id="critAudio">
+        <source src="Sound/Crit.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
 
         // ??
         let contentDiv = document.getElementById('content');
+        let critAudio = document.getElementById('critAudio');
 
         // model
         let bossHealth = 200;
         let bossAttack = 15;
-        let youHealth = 100;
+        let youHealth = 1000;
         let youAttack = 10;
         let messageWinner = null;
         let messageAttack = null;
@@ -43,10 +48,12 @@
         function attack() {
             let rngNr = Math.floor(Math.random() * 20);
             let rngBoss = Math.floor(Math.random() * 20);
-
+            let rngUltra = 1 + Math.floor(Math.random() * 100);
+            
             if (rngNr == 19){
                 bossHealth = bossHealth - youAttack * 4;
                 messageAttack = 'You hit with 40 dmg!';
+                critAudio.play();
             } 
             else if (rngNr == 18) {
                 bossHealth = bossHealth - youAttack * 2;
@@ -66,7 +73,7 @@
             } 
             else if (rngBoss == 18 && bossHealth > 0) {
                 youHealth = youHealth - bossAttack / 5;
-                messageBossAttack = 'Boss hit with 3 dmg!';
+                messageBossAttack = 'Boss hit your toe for 3 dmg!';
             } 
             else if (rngBoss == 17 && bossHealth > 0){
                 youHealth = youHealth;
@@ -76,9 +83,6 @@
                 messageBossAttack = 'Boss hit with 15 dmg!';
             }
             
-            youHealth = youHealth - bossAttack;
-          
-
             if (bossHealth < 0) {
                 bossHealth = 0;
                 messageWinner = 'You won!';
@@ -88,6 +92,12 @@
                 youHealth = 0;
                 messageWinner = 'Boss won!';
                 buttonState = 'disabled';
+            }
+            
+
+            if (rngUltra == 1) {
+                bossHealth  = bossHealth - youAttack * 900;
+                messageAttack = 'Its over 9000!!!';
             }
 
             show();
