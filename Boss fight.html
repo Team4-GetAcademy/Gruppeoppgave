@@ -11,6 +11,10 @@
           background-attachment: fixed;
           background-size: cover;
         }
+        
+        h1 {
+            color: pink;
+        }
     </style>
 
 </head>
@@ -20,7 +24,7 @@
     <audio id="critAudio">
         <source src="Sound/Crit.mp3" type="audio/mpeg">
     </audio>
-
+    
     <script>
 
         // ??
@@ -30,7 +34,7 @@
         // model
         let bossHealth = 200;
         let bossAttack = 15;
-        let youHealth = 100;
+        let youHealth = 10000;
         let youAttack;
         let messageWinner = null;
         let messageAttack = null;
@@ -44,6 +48,7 @@
             if (screen == 'swordPick') showSword();
             if (screen == 'boss') showBoss();
             if (screen == 'boss2') showBoss2();
+            if (screen == 'winner') winner();
         }
 
         function showSword() {
@@ -69,7 +74,7 @@
         }
 
         function showBoss2() {
-            document.body.style.backgroundImage = "";
+            document.body.style.backgroundImage = "https://stenprosjekt.no/wp-content/uploads/2019/11/Moak-Black.jpg";
             contentDiv.innerHTML = `
             <h1>${bossHealth}</h1>
             <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/midn-flayer-stranger-things-1562960985.png" height="400px">
@@ -79,6 +84,10 @@
             <div>${messageBossAttack || ''}</div>
             <div>${messageWinner || ''}</div>
             `;
+        }
+
+        function winner() {
+            contentDiv.innerHTML = `You won!`;
         }
 
         // controller
@@ -127,9 +136,10 @@
                 buttonState = 'disabled';
             }
             else if (bossHealth <= 0) {
-                bossHealth = 0;
-                messageWinner = 'You won!';
+                // bossHealth = 0;
+                // messageWinner = 'You won!';
                 // buttonState = 'disabled';
+                if (screen == 'boss2') return screen = 'winner';
                 screen = 'boss2';
                 bossHealth = 1000;
             }
