@@ -18,6 +18,7 @@
 
         h2 {
             font-size: 1000%;
+            color: black;
         }
 
         div {
@@ -39,18 +40,20 @@
         // ??
         let contentDiv = document.getElementById('content');
         let critAudio = document.getElementById('critAudio');
+        let add = 'src="https://upload.wikimedia.org/wikipedia/commons/6/60/RAID_Shadow_Legends_logo.png" style="position: fixed; bottom: 0px; right: -40px;" height="150px"'
 
         // model
-        let bossHealth = 200;
+        let bossHealth = 500;
         let bossAttack = 15;
-        let youHealth = 10000;
+        let youHealth = 250;
         let youAttack;
         let messageWinner = null;
         let messageAttack = null;
         let messageBossAttack = null;
         let buttonState = null;
+        let healbutton = null;
         let screen = 'swordPick';
-
+        
         // view
         show();
         function show() {
@@ -59,10 +62,11 @@
             if (screen == 'boss2') showBoss2();
             if (screen == 'winner') winner();
         }
-
+        
         function showSword() {
             document.body.style.backgroundImage = "url('Picture/swordBack.png')";
             contentDiv.innerHTML = `
+            <img ${add}>
             <img onclick="youAttack = 5;screen = 'boss';show()" src="https://cdn.shopify.com/s/files/1/2384/2133/products/lg_54681.jpg?v=1516327260" height="300px">
             <img onclick="youAttack = 10;screen = 'boss';show()" src="https://upload.wikimedia.org/wikipedia/commons/1/14/Lightsaber%2C_silver_hilt%2C_blue_blade.png" height="300px">
             <img onclick="youAttack = 50;screen = 'boss';show()" src="https://whowhatwhy.org/wp-content/uploads/2016/06/b-2.jpg" height="300px">
@@ -74,7 +78,9 @@
             contentDiv.innerHTML = `
             <h1>${bossHealth}</h1>
             <img src="https://i.pinimg.com/originals/2f/e3/f1/2fe3f1584effc3be5855db5aefd02a98.jpg" height="400px">
+            <img ${add}>
             <h1>${youHealth}</h1>
+            <button ${healbutton} onclick="heal()">Eat that green herb!!</button>
             <button ${buttonState || ''} onclick="attack()">Kick ASS</button>
             <div>${messageAttack || ''}</div>
             <div>${messageBossAttack || ''}</div>
@@ -87,7 +93,9 @@
             contentDiv.innerHTML = `
             <h1>${bossHealth}</h1>
             <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/midn-flayer-stranger-things-1562960985.png" height="400px">
+            <img ${add}>
             <h1>${youHealth}</h1>
+            <button ${healbutton} onclick="heal()">Eat that green herb!!</button>
             <button ${buttonState || ''} onclick="attack()">Kick ASS</button>
             <div>${messageAttack || ''}</div>
             <div>${messageBossAttack || ''}</div>
@@ -105,22 +113,23 @@
             let rngNr = Math.floor(Math.random() * 20);
             let rngBoss = Math.floor(Math.random() * 20);
             let rngUltra = 1 + Math.floor(Math.random() * 100);
-            
+
             if (rngNr == 19){
                 bossHealth = bossHealth - youAttack * 4;
-                messageAttack = '<strong>You hit with 40 dmg!</strong>';
+                messageAttack = `You uber crit with ${youAttack * 4} dmg!`;
+                critAudio.volume = 0.3;
                 critAudio.play();
             } 
             else if (rngNr == 18) {
                 bossHealth = bossHealth - youAttack * 2;
-                messageAttack = 'You hit with 20 dmg!';
+                messageAttack = `You crit with ${youAttack * 2} dmg!`;
             } 
             else if(rngNr == 17){
-                bossHealth = bossHealth;
-                messageAttack = 'You miss!'
+                youHealth = youHealth - 1;
+                messageAttack = 'You hit yourself for 1 dmg!'
             } else {
                 bossHealth = bossHealth - youAttack;
-                messageAttack = 'You hit with 10 dmg!';
+                messageAttack = `You hit with ${youAttack} dmg!`;
             }
             
             if (rngBoss == 19 && bossHealth > 0){
@@ -133,10 +142,15 @@
             } 
             else if (rngBoss == 17 && bossHealth > 0){
                 youHealth = youHealth;
-                messageBossAttack = 'Boss miss!'
+                messageBossAttack = 'Boss punch angrily at the air!'
             } else {
                 youHealth = youHealth - bossAttack
                 messageBossAttack = 'Boss hit with 15 dmg!';
+            }
+
+            if (rngUltra == 1) {
+                bossHealth  = bossHealth - 9000;
+                messageAttack = 'Its over 9000!!!';
             }
             
             if (bossHealth <= 0 && youHealth <= 0) {
@@ -150,20 +164,22 @@
             }
             else if (bossHealth <= 0) {
                 screen = 'boss2';
-                bossHealth = 50;
+                bossHealth = 500;
             }
             else if (youHealth <= 0) {
                 youHealth = 0;
                 messageWinner = 'Boss won!';
                 buttonState = 'disabled';
             }
-
-            if (rngUltra == 1) {
-                bossHealth  = bossHealth - youAttack * 900;
-                messageAttack = 'Its over 9000!!!';
-            }
             show();
         }
+
+        function heal(){
+                youHealth = youHealth + 150;
+                healbutton = 'disabled';
+                if (youHealth > 250) youHealth = 250;
+                show();
+            }
 
     </script>
     
