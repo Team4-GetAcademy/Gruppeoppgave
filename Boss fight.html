@@ -34,13 +34,17 @@
     <audio id="critAudio">
         <source src="Sound/Crit.mp3" type="audio/mpeg">
     </audio>
+
+    <!-- <iframe width="720" height="480"
+    src="https://www.youtube.com/embed/lIBoiM27QEs?autoplay">
+    </iframe> -->
     
     <script>
 
         // ??
         let contentDiv = document.getElementById('content');
         let critAudio = document.getElementById('critAudio');
-        let add = 'src="https://upload.wikimedia.org/wikipedia/commons/6/60/RAID_Shadow_Legends_logo.png" style="position: fixed; bottom: 0px; right: -40px;" height="150px"'
+        let ad = 'onclick="seeAd()" src="https://upload.wikimedia.org/wikipedia/commons/6/60/RAID_Shadow_Legends_logo.png" style="position: fixed; bottom: 0px; right: -40px;" height="150px"'
 
         // model
         let bossHealth = 500;
@@ -66,7 +70,7 @@
         function showSword() {
             document.body.style.backgroundImage = "url('Picture/swordBack.png')";
             contentDiv.innerHTML = `
-            <img ${add}>
+            <img ${ad}>
             <img onclick="youAttack = 5;screen = 'boss';show()" src="https://cdn.shopify.com/s/files/1/2384/2133/products/lg_54681.jpg?v=1516327260" height="300px">
             <img onclick="youAttack = 10;screen = 'boss';show()" src="https://upload.wikimedia.org/wikipedia/commons/1/14/Lightsaber%2C_silver_hilt%2C_blue_blade.png" height="300px">
             <img onclick="youAttack = 50;screen = 'boss';show()" src="https://whowhatwhy.org/wp-content/uploads/2016/06/b-2.jpg" height="300px">
@@ -78,7 +82,7 @@
             contentDiv.innerHTML = `
             <h1>${bossHealth}</h1>
             <img src="https://i.pinimg.com/originals/2f/e3/f1/2fe3f1584effc3be5855db5aefd02a98.jpg" height="400px">
-            <img ${add}>
+            <img ${ad}>
             <h1>${youHealth}</h1>
             <button ${healbutton} onclick="heal()">Eat that green herb!!</button>
             <button ${buttonState || ''} onclick="attack()">Kick ASS</button>
@@ -93,7 +97,7 @@
             contentDiv.innerHTML = `
             <h1>${bossHealth}</h1>
             <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/midn-flayer-stranger-things-1562960985.png" height="400px">
-            <img ${add}>
+            <img ${ad}>
             <h1>${youHealth}</h1>
             <button ${healbutton} onclick="heal()">Eat that green herb!!</button>
             <button ${buttonState || ''} onclick="attack()">Kick ASS</button>
@@ -180,6 +184,14 @@
                 if (youHealth > 250) youHealth = 250;
                 show();
             }
+
+        function seeAd() {
+            healbutton = null;
+            // <iframe width="420" height="345" src="https://youtu.be/gmwbHdJLadE"></iframe>
+            window.open('https://www.youtube.com/embed/lIBoiM27QEs=6?autoplay=1', '_blank');
+            healbutton = null;
+            show();
+        }
 
     </script>
     
