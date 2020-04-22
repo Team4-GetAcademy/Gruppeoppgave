@@ -35,9 +35,8 @@
         <source src="Sound/Crit.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- <iframe width="720" height="480"
-    src="https://www.youtube.com/embed/lIBoiM27QEs?autoplay">
-    </iframe> -->
+    <div id="ad"></div>
+
     
     <script>
 
@@ -78,7 +77,7 @@
         }
 
         function showBoss() {
-            document.body.style.backgroundImage = "url('picture/forest.jpg')";
+            document.body.style.backgroundImage = "url('Picture/forest.jpg')";
             contentDiv.innerHTML = `
             <h1>${bossHealth}</h1>
             <img src="https://i.pinimg.com/originals/2f/e3/f1/2fe3f1584effc3be5855db5aefd02a98.jpg" height="400px">
@@ -108,7 +107,7 @@
         }
 
         function winner() {
-            document.body.style.backgroundImage = '';
+            document.body.style.backgroundImage = "url('Picture/Raid.png')";
             contentDiv.innerHTML = `<h2>You won!</h2>`;
         }
 
@@ -188,8 +187,11 @@
         function seeAd() {
             healbutton = null;
             // <iframe width="420" height="345" src="https://youtu.be/gmwbHdJLadE"></iframe>
-            window.open('https://www.youtube.com/embed/lIBoiM27QEs=6?autoplay=1', '_blank');
+            window.open('https://www.youtube.com/embed/lIBoiM27QEs?autoplay=1', '_blank');
             healbutton = null;
+            let videoStyle = 'position:fixed; z-index:+1; top: 0; left: 0; height:100%; width: 100%;'
+            document.getElementById('ad').innerHTML = `<iframe style=" ´${videoStyle}´" src="https://www.youtube.com/embed/lIBoiM27QEs?autoplay=1"></iframe>`;
+
             show();
         }
 
