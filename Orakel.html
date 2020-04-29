@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            z-index: -1;
+            background-image: url('https://i.ytimg.com/vi/4PCXKMUW0ew/maxresdefault.jpg');
+        }
+        div {
+            color: red;
+            background-image: url('Picture/snakkeboble.png');
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+    <script>    
+        // halpe
+        let contentDiv = document.getElementById('content');
+
+        // model
+        let oracleWisdom = ['0.2+0.1 = 0.300000000000004', 'Give a man a fire and he is warm for a day, but set fire to him and he is warm for the rest of his life.','42', 'Sup!', 'hemmelig3'];
+        let random;
+        let question;
+        
+        // view
+        show();
+        function show() {
+            contentDiv.innerHTML = `
+            <div>${oracleWisdom[random] || ''}</div>
+            <input type="text" value="${question || ''}" oninput="question = this.value"/> <button onclick="getOracle()">Press</button>
+            `;
+        }
+
+        // controller
+        function getOracle() {
+            random = Math.floor(Math.random() * ora);
+            if (question == 'q') random = 3;
+            question = '';
+            show();
+        }
+
+    </script>
+
+    
+</body>
+</html>
