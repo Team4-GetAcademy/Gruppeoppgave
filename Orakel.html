@@ -12,12 +12,24 @@
             z-index: -1;
             background-image: url('https://i.ytimg.com/vi/4PCXKMUW0ew/maxresdefault.jpg');
         }
-        div {
-            color: red;
-            background-image: url('Picture/snakkeboble.png');
-            z-index: 1;
-            width: 150px;
-            height: 150px;
+        .bubble {
+            background-image: url('Picture/txtbu.png');
+            background-repeat: no-repeat;
+            position: fixed;
+            z-index: -1;
+            width: 300px;
+            height: 165px;
+            top: 70px;
+            left: 470px;
+        }
+
+        p {
+            color:goldenrod;
+            text-align: left;
+            width: 230px;
+            padding-left: 10px;
+            margin-left: 15px;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
         }
         
     </style>
@@ -29,7 +41,9 @@
         let contentDiv = document.getElementById('content');
 
         // model
-        let oracleWisdom = ['0.2+0.1 = 0.300000000000004', 'Give a man a fire and he is warm for a day, but set fire to him and he is warm for the rest of his life.','42', 'Sup!', 'hemmelig3'];
+        let oracleWisdom = ['0.2+0.1 = 0.300000000000004', 'Give a man a fire and he is warm for a day, but set fire to him and he is warm for the rest of his life.','42',
+        'Sup!', 'Inside every old person is a young person wondering what happened.', 'Did I do anything last night that suggested I was sane?','How can mirrors be real if our eyes aren´t real'];
+        let oracleAnswer;
         let random;
         let question;
         
@@ -37,15 +51,17 @@
         show();
         function show() {
             contentDiv.innerHTML = `
-            <div>${oracleWisdom[random] || ''}</div>
             <input type="text" value="${question || ''}" oninput="question = this.value"/> <button onclick="getOracle()">Press</button>
+            </br>
+            <div class="bubble"><p>${oracleAnswer || ''}</p></div>
             `;
         }
 
         // controller
         function getOracle() {
-            random = Math.floor(Math.random() * ora);
-            if (question == 'q') random = 3;
+            random = Math.floor(Math.random() * oracleWisdom.length);
+            oracleAnswer = oracleWisdom[random];
+            if (question == 'youtube rewind') oracleAnswer = 'aaaahh, it´s rewind time!!';
             question = '';
             show();
         }
